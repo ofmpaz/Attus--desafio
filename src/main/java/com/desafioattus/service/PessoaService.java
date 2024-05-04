@@ -7,6 +7,9 @@ import com.desafioattus.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PessoaService {
 
@@ -27,4 +30,9 @@ public class PessoaService {
         return registrarPessoaDTO;
     }
 
+    public List<PessoaDTO> consultarPessoaPorNome(String nome) {
+        return pessoaRepository.findDTOByNome(nome);
+    }
 }
+
+

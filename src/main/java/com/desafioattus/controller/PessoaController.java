@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(("/pessoa"))
 public class PessoaController {
@@ -20,6 +22,12 @@ public class PessoaController {
         PessoaDTO criarPessoa = pessoaService.adicionarPessoa(pessoaDTO);
 
         return new ResponseEntity<>(criarPessoa, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/consultar/{nome}")
+    public ResponseEntity<List<PessoaDTO>> consultarPessoaPorNome(@PathVariable String nome) {
+        List<PessoaDTO> pessoasDTO = pessoaService.consultarPessoaPorNome(nome);
+        return new ResponseEntity<>(pessoasDTO, HttpStatus.OK);
     }
 
 }
