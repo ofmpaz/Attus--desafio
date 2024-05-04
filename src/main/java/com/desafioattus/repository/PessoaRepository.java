@@ -12,6 +12,7 @@ import java.util.UUID;
 public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
 
     @Query("SELECT new com.desafioattus.model.dto.PessoaDTO(p.id, p.nome, p.dataNascimento) FROM Pessoa p WHERE p.nome LIKE %:nome%")
-    List<PessoaDTO> findDTOByNome(@Param("nome") String nome);
+    List<PessoaDTO> findDByNome(@Param("nome") String nome);
 
+    List<Pessoa> findByNome(String nome);
 }
