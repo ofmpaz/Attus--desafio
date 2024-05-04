@@ -11,4 +11,5 @@ public interface PessoaMapper {
 
     PessoaDTO paraPessoaDTO (Pessoa pessoa);
 
+    PessoaDTO paraPessoaDTO(PessoaDTO pessoa);
 }
