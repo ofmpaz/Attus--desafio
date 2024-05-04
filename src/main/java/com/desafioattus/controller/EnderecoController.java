@@ -1,14 +1,14 @@
 package com.desafioattus.controller;
 
+import com.desafioattus.model.Endereco;
 import com.desafioattus.model.dto.EnderecoDTO;
 import com.desafioattus.service.EnderecoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(("/endereco"))
@@ -24,4 +24,17 @@ public class EnderecoController {
 
         return new ResponseEntity<>(criaEndereco, HttpStatus.CREATED);
     }
+
+    @GetMapping("/buscarPorLogradouro")
+    public ResponseEntity<List<Endereco>> buscaEnderecoPorLogradouro(@RequestParam("logradouro") String logradouro) {
+        List<Endereco> enderecoDTOS = enderecoService.findByLogradouroContaining(logradouro);
+        return ResponseEntity.ok(enderecoDTOS);
+    }
+
+    @GetMapping("/buscarTodos")
+    public ResponseEntity<List<Endereco>> buscarTodosEnderecos() {
+        List<Endereco> enderecos = enderecoService.buscarTodosEnderecos();
+        return ResponseEntity.ok(enderecos);
+    }
+
 }
