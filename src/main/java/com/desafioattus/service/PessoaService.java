@@ -7,7 +7,6 @@ import com.desafioattus.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -34,9 +33,8 @@ public class PessoaService {
     public List<PessoaDTO> consultarPessoaPorNome(String nome) {
         return pessoaRepository.findDByNome(nome);
     }
-    
+
     public PessoaDTO atualizarPessoa(String nome, PessoaDTO pessoaDTO) {
-        // Busca a pessoa pelo nome no repositório
         List<Pessoa> pessoas = pessoaRepository.findByNome(nome);
 
         if (pessoas.isEmpty()) {
@@ -54,8 +52,8 @@ public class PessoaService {
     public List<PessoaDTO> consultarTodasPessoas() {
         List<Pessoa> pessoas = pessoaRepository.findAll();
         List<PessoaDTO> pessoasDTO = pessoas.stream()
-                .map(pessoaMapper::paraPessoaDTO) // Mapeia cada Pessoa para PessoaDTO
-                .collect(Collectors.toList());    // Coleta os resultados em uma lista
+                .map(pessoaMapper::paraPessoaDTO)
+                .collect(Collectors.toList());
 
         return pessoasDTO;
     }
