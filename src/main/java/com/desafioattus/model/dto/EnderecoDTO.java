@@ -23,7 +23,7 @@ public class EnderecoDTO {
 
     @NotBlank(message = "Cep é obrigatório")
     private String cep;
-    
+
     private int numero;
 
     @NotBlank(message = "Cidade é obrigatório")
