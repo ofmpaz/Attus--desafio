@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/PRONTUARIO
+    url: jdbc:postgresql://localhost:5432/ATTUS-DESAFIO
     username: ${DB_USER:postgres}
     password: ${DB_PASSWORD:123}
   jpa:
