@@ -37,4 +37,6 @@ public class EnderecoService {
     public List<Endereco> buscarTodosEnderecos(){
         return enderecoRepository.findAll();
     }
+
+
 }

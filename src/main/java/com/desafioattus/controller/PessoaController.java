@@ -1,5 +1,7 @@
 package com.desafioattus.controller;
 
+import com.desafioattus.model.Endereco;
+import com.desafioattus.model.Pessoa;
 import com.desafioattus.model.dto.PessoaDTO;
 import com.desafioattus.service.PessoaService;
 import jakarta.validation.Valid;
@@ -42,9 +44,9 @@ public class PessoaController {
     }
 
     @GetMapping("/todas")
-    public ResponseEntity<List<PessoaDTO>> consultarTodasPessoas() {
-        List<PessoaDTO> pessoasDTO = pessoaService.consultarTodasPessoas();
-        return new ResponseEntity<>(pessoasDTO, HttpStatus.OK);
+    public ResponseEntity<List<Pessoa>> buscarTodasPessoas() {
+        List<Pessoa> pessoas = pessoaService.buscarTodasPessoas();
+        return ResponseEntity.ok(pessoas);
     }
 
 }

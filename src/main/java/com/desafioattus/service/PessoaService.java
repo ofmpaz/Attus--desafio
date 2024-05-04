@@ -49,14 +49,10 @@ public class PessoaService {
         return pessoaMapper.paraPessoaDTO(pessoaAtualizada);
     }
 
-    public List<PessoaDTO> consultarTodasPessoas() {
-        List<Pessoa> pessoas = pessoaRepository.findAll();
-        List<PessoaDTO> pessoasDTO = pessoas.stream()
-                .map(pessoaMapper::paraPessoaDTO)
-                .collect(Collectors.toList());
-
-        return pessoasDTO;
+    public List<Pessoa> buscarTodasPessoas(){
+        return pessoaRepository.findAll();
     }
+
 
 }
 
