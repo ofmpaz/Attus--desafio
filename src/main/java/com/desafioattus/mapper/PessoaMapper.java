@@ -8,4 +8,7 @@ import org.mapstruct.Mapper;
 public interface PessoaMapper {
 
     Pessoa paraPessoa (PessoaDTO pessoaDTO);
+
+    PessoaDTO paraPessoaDTO (Pessoa pessoa);
+
 }
