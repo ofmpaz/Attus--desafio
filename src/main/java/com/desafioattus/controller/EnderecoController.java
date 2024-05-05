@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping(("/endereco"))
@@ -18,13 +19,16 @@ public class EnderecoController {
     @Autowired
     EnderecoService enderecoService;
 
-    @PostMapping
-    public ResponseEntity<EnderecoDTO> adicionaEndereo(@RequestBody EnderecoDTO enderecoDTO){
+    @PostMapping("/associar")
+    public ResponseEntity<EnderecoDTO> cadastrarEnderecoAssociado(
+            @RequestParam("pessoaId") UUID pessoaId,
+            @RequestBody EnderecoDTO enderecoDTO) {
 
-        EnderecoDTO criaEndereco = enderecoService.cadastrarEndereco(enderecoDTO);
+        EnderecoDTO novoEndereco = enderecoService.cadastrarEnderecoAssociado(pessoaId, enderecoDTO);
 
-        return new ResponseEntity<>(criaEndereco, HttpStatus.CREATED);
+        return new ResponseEntity<>(novoEndereco, HttpStatus.CREATED);
     }
+
 
     @GetMapping("/buscarPorLogradouro")
     public ResponseEntity<List<Endereco>> buscaEnderecoPorLogradouro(@RequestParam("logradouro") String logradouro) {

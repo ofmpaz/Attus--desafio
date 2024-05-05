@@ -6,11 +6,13 @@ import com.desafioattus.model.Pessoa;
 import com.desafioattus.model.dto.EnderecoDTO;
 import com.desafioattus.model.dto.PessoaDTO;
 import com.desafioattus.repository.EnderecoRepository;
+import com.desafioattus.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.xml.stream.events.EndElement;
 import java.util.List;
+import java.util.UUID;
 
 
 @Service
@@ -22,16 +24,21 @@ public class EnderecoService {
     @Autowired
     EnderecoRepository enderecoRepository;
 
-    public EnderecoDTO cadastrarEndereco(EnderecoDTO enderecoDTO){
+    @Autowired
+    PessoaRepository pessoaRepository;
+
+    public EnderecoDTO cadastrarEnderecoAssociado(UUID pessoaId, EnderecoDTO enderecoDTO) {
+        Pessoa pessoa = pessoaRepository.findById(pessoaId)
+                .orElseThrow(() -> new RuntimeException("Pessoa com ID " + pessoaId + " não encontrada"));
 
         Endereco endereco = enderecoMapper.paraEndereco(enderecoDTO);
+        endereco.setPessoa(pessoa); // Associa o endereço à pessoa
 
         Endereco novoEndereco = enderecoRepository.save(endereco);
 
-        EnderecoDTO novoEnderecoDTO = enderecoMapper.paraEnderecoDTO(novoEndereco);
-
-        return novoEnderecoDTO;
+        return enderecoMapper.paraEnderecoDTO(novoEndereco);
     }
+
 
     public List<Endereco> findByLogradouroContaining(String logradouro) {
         return enderecoRepository.findByLogradouroContaining(logradouro);
