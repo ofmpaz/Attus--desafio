@@ -1,5 +1,6 @@
 package com.desafioattus.model.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -31,4 +32,5 @@ public class EnderecoDTO {
 
     @NotBlank(message = "Estado é obrigatório")
     private String estado;
+
 }

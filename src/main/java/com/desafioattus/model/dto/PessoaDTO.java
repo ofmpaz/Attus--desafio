@@ -23,4 +23,5 @@ public class PessoaDTO {
 
     @NotNull(message = "Data de nascimento é obrigatória")
     private Date dataNascimento;
+
 }

@@ -45,7 +45,7 @@ public class EnderecoService {
         List<Endereco> enderecos = enderecoRepository.findByLogradouroContaining(logradouro);
 
         if (enderecos.isEmpty()) {
-            throw new RuntimeException("Nenhuma pessoa encontrada com o nome: " + enderecos);
+            throw new RuntimeException("Nenhum endereço encontrado para o logradouro " + enderecos);
         }
 
         Endereco endereco = enderecos.get(0);

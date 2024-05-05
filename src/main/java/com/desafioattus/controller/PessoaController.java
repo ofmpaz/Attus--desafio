@@ -1,6 +1,5 @@
 package com.desafioattus.controller;
 
-import com.desafioattus.model.Endereco;
 import com.desafioattus.model.Pessoa;
 import com.desafioattus.model.dto.PessoaDTO;
 import com.desafioattus.service.PessoaService;
@@ -19,11 +18,10 @@ public class PessoaController {
     @Autowired
     private PessoaService pessoaService;
 
+
     @PostMapping
     public ResponseEntity<PessoaDTO> adicionaPessoa(@RequestBody PessoaDTO pessoaDTO){
-
         PessoaDTO criarPessoa = pessoaService.adicionarPessoa(pessoaDTO);
-
         return new ResponseEntity<>(criarPessoa, HttpStatus.CREATED);
     }
 
