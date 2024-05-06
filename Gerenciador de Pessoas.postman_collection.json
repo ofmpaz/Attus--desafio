@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "fefdf5b2-b062-4601-b58f-751e51e4829b",
+		"name": "Gerenciador de Pessoas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31731598"
+	},
+	"item": [
+		{
+			"name": "Documentação do Controller - Endereco",
+			"item": [
+				{
+					"name": "Adiciona Endereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"logradouro\": \"Amaralina\",\r\n    \"cidade\": \"Salvador\",\r\n    \"estado\": \"BA\",\r\n    \"cep\": \"1238-789\",\r\n    \"numero\": 1256\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/addEndereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"addEndereco"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"logradouro\": \"Amaralina\",\r\n    \"cidade\": \"Salvador\",\r\n    \"estado\": \"BA\",\r\n    \"cep\": \"1238-789\",\r\n    \"numero\": 1256\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/endereco/addEndereco",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"endereco",
+										"addEndereco"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 May 2024 13:40:56 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"logradouro\": \"Amaralina\",\n    \"cidade\": \"Salvador\",\n    \"estado\": \"BA\",\n    \"cep\": \"1238-789\",\n    \"numero\": 1256\n}"
+						}
+					]
+				},
+				{
+					"name": "Buscar endereco por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/endereco/buscaEnderecoPorId/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"buscaEnderecoPorId",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar endereco por ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"logradouro\": \"Rio Vermelho\",\r\n    \"cidade\": \"Salvador\",\r\n    \"estado\": \"BA\",\r\n    \"cep\": \"1238-789\",\r\n    \"numero\": 1256\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/endereco/atualizaEndereco/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"atualizaEndereco",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca todos endereoços",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "StartFragment\n\nEste documento descreve os endpoints disponíveis para gerenciar endereços através do controller `EnderecoController`.\n\n## Base URL\n\n```\nhttp://localhost:8080\n\n ```\n\n## Endpoints\n\n### 1\\. Buscar Todos os Endereços\n\nEndpoint para recuperar todos os endereços cadastrados.\n\n- **Método:** GET\n- **URL:** `/endereco/buscaTodosEnderecos`\n- **Resposta de Sucesso:** Retorna uma lista de todos os endereços cadastrados.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Lista de objetos `Endereco`\n\n#### Exemplo de Uso:\n\n```\nbashCopy codeGET http://localhost:8080/endereco/buscaTodosEnderecos\n\n ```\n\n---\n\n### 2\\. Buscar Endereço por ID\n\nEndpoint para buscar um endereço pelo ID.\n\n- **Método:** GET\n- **URL:** `/endereco/buscaEnderecoPorId/{id}`\n    - `{id}`: ID do endereço a ser buscado.\n- **Parâmetros de URL:**\n    - `id` (obrigatório): ID do endereço a ser buscado.\n- **Resposta de Sucesso:** Retorna o endereço correspondente ao ID fornecido.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Objeto `Endereco`\n\n#### Exemplo de Uso:\n\n```\nbashCopy codeGET http://localhost:8080/endereco/buscaEnderecoPorId/1\n\n ```\n\n---\n\n### 3\\. Adicionar Endereço\n\nEndpoint para adicionar um novo endereço.\n\n- **Método:** POST\n- **URL:** `/endereco/addEndereco`\n- **Corpo da Requisição:** Objeto `Endereco` no formato JSON.\n- **Resposta de Sucesso:** Retorna o endereço recém-adicionado.\n    - Código de Status: 201 Created\n    - Corpo da Resposta: Objeto `Endereco` adicionado\n\n#### Exemplo de Uso:\n\n```\nbashCopy codePOST http://localhost:8080/endereco/addEndereco\n{\n  \"logradouro\": \"Rua Exemplo\",\n  \"cidade\": \"Cidade Exemplo\",\n  \"estado\": \"Estado Exemplo\",\n  \"cep\": \"12345-678\",\n  \"numero\": 123\n}\n\n ```\n\n---\n\n### 4\\. Atualizar Endereço\n\nEndpoint para atualizar os detalhes de um endereço existente.\n\n- **Método:** PUT\n- **URL:** `/endereco/atualizaEndereco/{id}`\n    - `{id}`: ID do endereço a ser atualizado.\n- **Parâmetros de URL:**\n    - `id` (obrigatório): ID do endereço a ser atualizado.\n- **Corpo da Requisição:** Objeto `Endereco` com os dados atualizados no formato JSON.\n- **Resposta de Sucesso:** Retorna o endereço atualizado.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Objeto `Endereco` atualizado\n\n#### Exemplo de Uso:\n\n```\nbashCopy codePUT http://localhost:8080/endereco/atualizaEndereco/1\n{\n  \"logradouro\": \"Nova Rua\",\n  \"cidade\": \"Nova Cidade\",\n  \"estado\": \"Novo Estado\",\n  \"cep\": \"54321-987\",\n  \"numero\": 456\n}\n\n ```\n\n---\n\n## Códigos de Resposta\n\n- **200 OK:** Requisição bem-sucedida.\n- **201 Created:** Recurso criado com sucesso.\n- **404 Not Found:** Recurso não encontrado.\n- **500 Internal Server Error:** Erro interno do servidor.\n    \n\n---\n\nEsta documentação fornece uma visão geral dos endpoints disponíveis no `EnderecoController` para gerenciar operações relacionadas a endereços em seu aplicativo.\n\nEndFragment"
+		},
+		{
+			"name": "Documentação do Controller - Associacao",
+			"item": [
+				{
+					"name": "Associar um endereço principal a pessoa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"logradouro\": \"Rua ABC\",\r\n  \"cidade\": \"São Paulo\",\r\n  \"estado\": \"SP\",\r\n  \"cep\": \"01234-567\",\r\n  \"numero\": 123\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/associar/52/marcarEnderecoPrincipal/103\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"associar",
+								"52",
+								"marcarEnderecoPrincipal",
+								"103\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Associar endereco",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"logradouro\": \"Itapuã\",\r\n    \"cidade\": \"Salvador\",\r\n    \"estado\": \"BA\",\r\n    \"cep\": \"1238-789\",\r\n    \"numero\": 1256\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/associar/103/associarEndereco",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"associar",
+								"103",
+								"associarEndereco"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"logradouro\": \"Itapuã\",\r\n    \"cidade\": \"Salvador\",\r\n    \"estado\": \"BA\",\r\n    \"cep\": \"1238-789\",\r\n    \"numero\": 1256\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/associar/103/associarEndereco",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"associar",
+										"103",
+										"associarEndereco"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "42"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 May 2024 15:11:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Endereço associado à pessoa com sucesso!"
+						}
+					]
+				}
+			],
+			"description": "Este documento descreve os endpoints disponíveis para associar e gerenciar endereços de pessoas através do controller `AssociacaoController`.\n\n## Base URL\n\n```\nHttps://localhost:8080\n\n ```\n\n## Endpoints\n\n### 1\\. Associar Endereço a uma Pessoa\n\nEndpoint para associar um endereço a uma pessoa existente.\n\n- **Método:** POST\n- **URL:** `/associar/{pessoaId}/associarEndereco`\n    - `{pessoaId}`: ID da pessoa à qual o endereço será associado.\n- **Parâmetros de URL:**\n    - `pessoaId` (obrigatório): ID da pessoa à qual o endereço será associado.\n- **Corpo da Requisição:** Objeto `Endereco` no formato JSON.\n- **Resposta de Sucesso:** Retorna uma mensagem indicando que o endereço foi associado com sucesso.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Mensagem de confirmação\n\n#### Exemplo de Uso:\n\n```\nbashCopy codePOST http://localhost:8080/associar/1/associarEndereco\n{\n  \"logradouro\": \"Rua Exemplo\",\n  \"cidade\": \"Cidade Exemplo\",\n  \"estado\": \"Estado Exemplo\",\n  \"pais\": \"País Exemplo\"\n}\n\n ```\n\n---\n\n### 2\\. Marcar Endereço como Principal para uma Pessoa\n\nEndpoint para marcar um endereço como principal para uma pessoa.\n\n- **Método:** PUT\n- **URL:** `/associar/{pessoaId}/marcarEnderecoPrincipal/{enderecoId}`\n    - `{pessoaId}`: ID da pessoa para a qual o endereço será marcado como principal.\n    - `{enderecoId}`: ID do endereço a ser marcado como principal.\n- **Parâmetros de URL:**\n    - `pessoaId` (obrigatório): ID da pessoa para a qual o endereço será marcado como principal.\n    - `enderecoId` (obrigatório): ID do endereço a ser marcado como principal.\n- **Resposta de Sucesso:** Retorna uma mensagem indicando que o endereço foi definido como principal para a pessoa.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Mensagem de confirmação\n\n#### Exemplo de Uso:\n\n```\nbashCopy codePUT http://localhost:8080/associar/1/marcarEnderecoPrincipal/2\n\n ```\n\n---\n\n## Códigos de Resposta\n\n- **200 OK:** Requisição bem-sucedida.\n- **404 Not Found:** Recurso não encontrado.\n- **500 Internal Server Error:** Erro interno do servidor.\n    \n\n---\n\nEsta documentação fornece uma visão geral dos endpoints disponíveis no `AssociacaoController` para associar e gerenciar endereços de pessoas em seu aplicativo."
+		},
+		{
+			"name": "DOCUMENTAÇÃO CONTROLLER PESSOA",
+			"item": [
+				{
+					"name": "Adcionar Pessoa",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Deise\",\r\n    \"dataNascimento\": \"2020-02-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoa/addPessoa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"addPessoa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar todas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/pessoa/buscaTodasPessoas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"buscaTodasPessoas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Pessoa",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nome\": \"Francisca\",\r\n    \"dataNascimento\": \"2020-01-02\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/pessoa/atualizarPessoa/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pessoa",
+								"atualizarPessoa",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Request",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"nome\": \"Francisca\",\r\n    \"dataNascimento\": \"2020-01-02\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/pessoa/atualizarPessoa/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"pessoa",
+										"atualizarPessoa",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 06 May 2024 12:53:52 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"nome\": \"Francisca\",\n    \"dataNascimento\": \"2020-01-02T00:00:00.000+00:00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Busca pessoa por ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "# Documentação do Controller - Pessoa\n\nEste documento descreve os endpoints disponíveis para interagir com a entidade `Pessoa` através do controller `PessoaController`.\n\n## Base URL\n\n```\nhttp://localhost:8080\n\n ```\n\n## Endpoints\n\n### 1\\. Buscar Todas as Pessoas\n\nEndpoint para recuperar todas as pessoas cadastradas.\n\n- **Método:** GET\n- **URL:** `/pessoa/buscaTodasPessoas`\n- **Resposta de Sucesso:** Retorna uma lista de todas as pessoas cadastradas.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Lista de objetos `Pessoa`\n\n#### Exemplo de Uso:\n\n```\nbashCopy codeGET http://localhost:8080/pessoa/buscaTodasPessoas\n\n ```\n\n---\n\n### 2\\. Buscar Pessoa por ID\n\nEndpoint para buscar uma pessoa pelo ID.\n\n- **Método:** GET\n- **URL:** `/pessoa/buscaPessoaPorId/{id}`\n    - `{id}`: ID da pessoa a ser buscada.\n- **Parâmetros de URL:**\n    - `id` (obrigatório): ID da pessoa a ser buscada.\n- **Resposta de Sucesso:** Retorna a pessoa correspondente ao ID fornecido.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Objeto `Pessoa`\n\n#### Exemplo de Uso:\n\n```\nbashCopy codeGET http://localhost:8080/pessoa/buscaPessoaPorId/1\n\n ```\n\n---\n\n### 3\\. Adicionar Pessoa\n\nEndpoint para adicionar uma nova pessoa.\n\n- **Método:** POST\n- **URL:** `/pessoa/addPessoa`\n- **Corpo da Requisição:** Objeto `Pessoa` no formato JSON.\n- **Resposta de Sucesso:** Retorna a pessoa recém-adicionada.\n    - Código de Status: 201 Created\n    - Corpo da Resposta: Objeto `Pessoa` adicionado\n\n#### Exemplo de Uso:\n\n```\nbashCopy codePOST http://localhost:8080/pessoa/addPessoa\n{\n  \"nome\": \"Nome da Pessoa\",\n  \"dataNascimento\": \"1990-01-01\"\n}\n\n ```\n\n---\n\n### 4\\. Atualizar Pessoa\n\nEndpoint para atualizar os detalhes de uma pessoa existente.\n\n- **Método:** PUT\n- **URL:** `/pessoa/atualizarPessoa/{id}`\n    - `{id}`: ID da pessoa a ser atualizada.\n- **Parâmetros de URL:**\n    - `id` (obrigatório): ID da pessoa a ser atualizada.\n- **Corpo da Requisição:** Objeto `Pessoa` com os dados atualizados no formato JSON.\n- **Resposta de Sucesso:** Retorna a pessoa atualizada.\n    - Código de Status: 200 OK\n    - Corpo da Resposta: Objeto `Pessoa` atualizada\n\n#### Exemplo de Uso:\n\n```\nbashCopy codePUT http://localhost:8080/pessoa/atualizarPessoa/1\n{\n  \"nome\": \"Novo Nome\",\n  \"dataNascimento\": \"1990-01-01\"\n}\n\n ```\n\n---\n\n## Códigos de Resposta\n\n- **200 OK:** Requisição bem-sucedida.\n- **201 Created:** Recurso criado com sucesso.\n- **404 Not Found:** Recurso não encontrado.\n- **500 Internal Server Error:** Erro interno do servidor.\n    \n\n---\n\nEsta documentação fornece uma visão geral dos endpoints disponíveis no `PessoaController` para gerenciar operações relacionadas às pessoas em seu aplicativo."
+		}
+	]
+}
