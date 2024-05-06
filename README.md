@@ -35,68 +35,26 @@ O sistema permite o cadastro, consulta e atualização de informações relacion
 - Maven (para gerenciamento de dependências)
 - Banco de Dados PostgreSQL
 
-## Como passar as URLs no Postman para pessoa
 
-| Método | URL                                      | Descrição                                      |
-|--------|------------------------------------------|------------------------------------------------|
-| POST   | `http://localhost:8080/pessoa`           | Cadastrar uma nova pessoa                      |
-| GET    | `http://localhost:8080/pessoa/consultar/{nome}` | Consultar pessoas por nome                |
-| PUT    | `http://localhost:8080/pessoa/atualizar?nome={nome}` | Atualizar dados de uma pessoa pelo nome |
-| GET    | `http://localhost:8080/pessoa/todas`     | Buscar todas as pessoas cadastradas            |
+## Utilizando Endpoints da Coleção no Postman
+# Para utilizar os endpoints definidos na coleção EnderecoController no Postman, siga os passos abaixo:
 
-## Exemplo de JSON para cadastrar uma nova pessoa (POST)
-{
-  "nome": "Maria Silva",
-  "dataNascimento": "1990-05-15",
-  "enderecos": [
-    {
-      "logradouro": "Rua das Flores",
-      "cidade": "São Paulo",
-      "estado": "SP",
-      "cep": "01010-000",
-      "numero": "123"
-    }
-  ]
-}
+| Endpoint                           | Método | URL                                                   | Descrição                                                                                          |
+|------------------------------------|--------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| Buscar Todos os Endereços          | GET    | `http://localhost:8080/endereco/buscaTodosEnderecos` | Retorna todos os endereços cadastrados no sistema.                                                  |
+| Buscar Endereço por ID              | GET    | `http://localhost:8080/endereco/buscaEnderecoPorId/{id}` | Retorna um endereço específico com base no ID fornecido. Substitua `{id}` pelo ID desejado.     |
+| Adicionar Novo Endereço             | POST   | `http://localhost:8080/endereco/addEndereco`          | Cria um novo registro de endereço.                                                                |
+| Atualizar Endereço Existente        | PUT    | `http://localhost:8080/endereco/atualizaEndereco/{id}` | Atualiza os detalhes de um endereço existente com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
 
-## Exemplo de JSON para consultar pessoas por nome (GET)
-{
-  "nome": "Maria"
-}
+## Utilizando Endpoints da Coleção PessoaController no Postman
 
-## Exemplo de JSON para atualizar dados de uma pessoa (PUT)
-{
-  "nome": "Maria Silva",
-  "dataNascimento": "1990-05-15"
-}
+| Endpoint                           | Método | URL                                          | Descrição                                                                                   |
+|------------------------------------|--------|----------------------------------------------|---------------------------------------------------------------------------------------------|
+| Buscar Todas as Pessoas             | GET    | `http://localhost:8080/pessoa/buscaTodasPessoas` | Retorna todas as pessoas cadastradas no sistema.                                            |
+| Buscar Pessoa por ID                | GET    | `http://localhost:8080/pessoa/buscaPessoaPorId/{id}` | Retorna uma pessoa específica com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
+| Adicionar Nova Pessoa               | POST   | `http://localhost:8080/pessoa/addPessoa`     | Adiciona uma nova pessoa ao sistema.                                                        |
+| Atualizar Pessoa Existente          | PUT    | `http://localhost:8080/pessoa/atualizarPessoa/{id}` | Atualiza os dados de uma pessoa existente com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
 
-## Como passar as URLs no Postman para pessoa
-
-| Método   | URL                            | Descrição                                        |
-|----------|--------------------------------|--------------------------------------------------|
-| `POST`   | `/endereco/cadastrar`           | Cadastrar um novo endereço                        |
-| `POST`   | `/endereco/associar?pessoaId={pessoaId}` | Associar um endereço a uma pessoa existente    |
-| `GET`    | `/endereco/buscarPorLogradouro?logradouro={logradouro}` | Buscar endereços por parte do logradouro |
-| `GET`    | `/endereco/buscarTodos`         | Buscar todos os endereços cadastrados            |
-| `PUT`    | `/endereco/atualizaEndereco?logradouro={logradouro}` | Atualizar dados de um endereço pelo logradouro |
-
-## Exemplo de JSON para cadastrar um novo endereço (POST)
-{
-  "logradouro": "Av. Paulista, 123",
-  "cidade": "São Paulo",
-  "estado": "SP",
-  "cep": "01310-200",
-  "numero": "123"
-}
-
-## {
-  "id": "78448878f8ef45d4f",
-  "logradouro": "Rua das Flores, 456",
-  "cidade": "São Paulo",
-  "estado": "SP",
-  "cep": "01020-300",
-  "numero": "456"
-}
 
 ## Como Executar
 
