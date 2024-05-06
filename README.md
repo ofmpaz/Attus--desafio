@@ -36,8 +36,9 @@ O sistema permite o cadastro, consulta e atualização de informações relacion
 - Banco de Dados PostgreSQL
 
 
-## Utilizando Endpoints da Coleção no Postman
-# Para utilizar os endpoints definidos na coleção EnderecoController no Postman, siga os passos abaixo:
+# Utilizando Endpoints no Postman
+
+## Para utilizar os endpoints definidos na coleção EnderecoController no Postman
 
 | Endpoint                           | Método | URL                                                   | Descrição                                                                                          |
 |------------------------------------|--------|-------------------------------------------------------|----------------------------------------------------------------------------------------------------|
@@ -46,7 +47,7 @@ O sistema permite o cadastro, consulta e atualização de informações relacion
 | Adicionar Novo Endereço             | POST   | `http://localhost:8080/endereco/addEndereco`          | Cria um novo registro de endereço.                                                                |
 | Atualizar Endereço Existente        | PUT    | `http://localhost:8080/endereco/atualizaEndereco/{id}` | Atualiza os detalhes de um endereço existente com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
 
-## Utilizando Endpoints da Coleção PessoaController no Postman
+## Para utilizar os endpoints definidos em PessoaController no Postman
 
 | Endpoint                           | Método | URL                                          | Descrição                                                                                   |
 |------------------------------------|--------|----------------------------------------------|---------------------------------------------------------------------------------------------|
@@ -54,6 +55,13 @@ O sistema permite o cadastro, consulta e atualização de informações relacion
 | Buscar Pessoa por ID                | GET    | `http://localhost:8080/pessoa/buscaPessoaPorId/{id}` | Retorna uma pessoa específica com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
 | Adicionar Nova Pessoa               | POST   | `http://localhost:8080/pessoa/addPessoa`     | Adiciona uma nova pessoa ao sistema.                                                        |
 | Atualizar Pessoa Existente          | PUT    | `http://localhost:8080/pessoa/atualizarPessoa/{id}` | Atualiza os dados de uma pessoa existente com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
+
+## Para utilizar os endpoints definidos em AssocicaoController no Postman
+
+| Método | Endpoint                                              | Descrição                                                    |
+|--------|-------------------------------------------------------|--------------------------------------------------------------|
+| POST   | `/associar/{pessoaId}/associarEndereco`              | Associa um novo endereço a uma pessoa existente.             |
+| PUT    | `/associar/{pessoaId}/marcarEnderecoPrincipal/{enderecoId}` | Define o endereço especificado como principal para a pessoa. |
 
 
 ## Como Executar
