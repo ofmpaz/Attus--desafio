@@ -2,37 +2,28 @@ package com.desafioattus.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import java.util.UUID;
 
 @Entity
-@Table(schema = "SYS", name = "TB_ENDERECO")
 @Data
+@Table(schema = "SYS", name = "TB_ENDERECO")
 public class Endereco {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private Long id;
 
-    @Column(name = "Logradouro", nullable = false)
+    @Column(name = "Logradouro")
     private String logradouro;
 
-    @Column(name = "Cep", nullable = false)
-    private String cep;
-
-    @Column(name = "numero")
-    private int numero;
-
-    @Column(name = "Cidade", nullable = false)
+    @Column(name = "cidade")
     private String cidade;
 
-    @Column(name = "Estado", nullable = false)
+    @Column(name = "estado" )
     private String estado;
 
-    @ManyToOne
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa; 
+    @Column(name = "cep")
+    private String cep;
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
+    @Column(name = "numero" )
+    private int numero;
 }

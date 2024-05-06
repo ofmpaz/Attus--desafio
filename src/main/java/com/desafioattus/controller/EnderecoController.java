@@ -1,61 +1,75 @@
 package com.desafioattus.controller;
 
+
 import com.desafioattus.model.Endereco;
-import com.desafioattus.model.dto.EnderecoDTO;
-import com.desafioattus.service.EnderecoService;
-import jakarta.validation.Valid;
+import com.desafioattus.repository.EnderecoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(("/endereco"))
 public class EnderecoController {
 
     @Autowired
-    EnderecoService enderecoService;
+    EnderecoRepository enderecoRepository;
 
-    @PostMapping("/cadastrar")
-    public ResponseEntity<EnderecoDTO> cadastrarEndereco(@RequestBody EnderecoDTO enderecoDTO) {
-        EnderecoDTO novoEndereco = enderecoService.cadastrarEndereco(enderecoDTO);
-        return new ResponseEntity<>(novoEndereco, HttpStatus.CREATED);
+    @GetMapping("/buscaTodosEnderecos")
+    public ResponseEntity<List<Endereco>> todosEnderecos(){
+        try{
+            List<Endereco> listaEnderecos = new ArrayList<>();
+            enderecoRepository.findAll().forEach(listaEnderecos::add);
+
+            if(listaEnderecos.isEmpty()){
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+
+            return new ResponseEntity<>(listaEnderecos, HttpStatus.OK);
+        }
+        catch(Exception ex){
+
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    @PostMapping("/associar")
-    public ResponseEntity<EnderecoDTO> cadastrarEnderecoAssociado(
-            @RequestParam("pessoaId") UUID pessoaId,
-            @RequestBody EnderecoDTO enderecoDTO) {
+    @GetMapping("/buscaEnderecoPorId/{id}")
+    public ResponseEntity<Endereco> buscaEnderecoPorId(@PathVariable Long id){
+        Optional<Endereco> endereco = enderecoRepository.findById(id);
 
-        EnderecoDTO novoEndereco = enderecoService.cadastrarEnderecoAssociado(pessoaId, enderecoDTO);
+        if(endereco.isPresent()){
+            return new ResponseEntity<>(endereco.get(), HttpStatus.OK);
+        }
 
-        return new ResponseEntity<>(novoEndereco, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
+    @PostMapping("/addEndereco")
+    public ResponseEntity<Endereco> adcionarEndereco (@RequestBody Endereco endereco){
+        Endereco enderecoObj = enderecoRepository.save(endereco);
 
-    @GetMapping("/buscarPorLogradouro")
-    public ResponseEntity<List<Endereco>> buscaEnderecoPorLogradouro(@RequestParam("logradouro") String logradouro) {
-        List<Endereco> enderecoDTOS = enderecoService.findByLogradouroContaining(logradouro);
-        return ResponseEntity.ok(enderecoDTOS);
+        return new ResponseEntity<>(enderecoObj, HttpStatus.CREATED);
     }
 
-    @GetMapping("/buscarTodos")
-    public ResponseEntity<List<Endereco>> buscarTodosEnderecos() {
-        List<Endereco> enderecos = enderecoService.buscarTodosEnderecos();
-        return ResponseEntity.ok(enderecos);
+    @PutMapping("/atualizaEndereco/{id}")
+    public ResponseEntity<Endereco> atulizarEndereco(@PathVariable Long id, @RequestBody Endereco novoEndereco){
+        Optional<Endereco> antigoEndereco = enderecoRepository.findById(id);
+
+        if(antigoEndereco.isPresent()){
+            Endereco enderecoAtualizado = antigoEndereco.get();
+            enderecoAtualizado.setLogradouro(novoEndereco.getLogradouro());
+            enderecoAtualizado.setCidade(novoEndereco.getCidade());
+            enderecoAtualizado.setEstado(novoEndereco.getEstado());
+            enderecoAtualizado.setCep(novoEndereco.getCep());
+            enderecoAtualizado.setNumero(novoEndereco.getNumero());
+
+            Endereco enderecoObj = enderecoRepository.save(enderecoAtualizado);
+            return new ResponseEntity<>(enderecoObj, HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
-
-    @PutMapping("/atualizaEndereco")
-    public ResponseEntity<EnderecoDTO> atualizarEndereco(
-            @RequestParam("logradouro") String logradouro,
-            @RequestBody @Valid EnderecoDTO enderecoDTO) {
-
-        EnderecoDTO enderecoAtualizado = enderecoService.atualizarEndereco(logradouro, enderecoDTO);
-
-        return new ResponseEntity<>(enderecoAtualizado, HttpStatus.OK);
-    }
-
 }

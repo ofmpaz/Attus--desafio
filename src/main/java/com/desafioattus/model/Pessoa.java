@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
+
 
 @Entity
 @Table(schema = "SYS", name = "TB_PESSOA")
@@ -14,7 +14,7 @@ public class Pessoa {
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO)
         @Column(name = "ID_PESSOA", unique = true, nullable = false)
-        private UUID id;
+        private Long id;
 
         @Column(name = "Nome", nullable = false)
         private String nome;
@@ -22,6 +22,5 @@ public class Pessoa {
         @Column(name = "DataNascimento")
         private Date dataNascimento;
 
-        @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL)
-        private List<Endereco> enderecos;
+
 }
