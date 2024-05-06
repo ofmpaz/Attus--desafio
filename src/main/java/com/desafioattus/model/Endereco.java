@@ -28,9 +28,9 @@ public class Endereco {
     @Column(name = "Estado", nullable = false)
     private String estado;
 
-    @ManyToOne // Define a relação muitos para um com Pessoa
-    @JoinColumn(name = "pessoa_id") // Nome da coluna que armazena o ID da pessoa
-    private Pessoa pessoa; // Campo que representa a pessoa associada ao endereço
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    private Pessoa pessoa; 
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
