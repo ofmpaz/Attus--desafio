@@ -56,7 +56,7 @@ O sistema permite o cadastro, consulta e atualização de informações relacion
 | Adicionar Nova Pessoa               | POST   | `http://localhost:8080/pessoa/addPessoa`     | Adiciona uma nova pessoa ao sistema.                                                        |
 | Atualizar Pessoa Existente          | PUT    | `http://localhost:8080/pessoa/atualizarPessoa/{id}` | Atualiza os dados de uma pessoa existente com base no ID fornecido. Substitua `{id}` pelo ID desejado. |
 
-## Para utilizar os endpoints definidos em AssocicaoController no Postman
+## Para utilizar os endpoints definidos em AssociacaoController no Postman
 
 | Método | Endpoint                                              | Descrição                                                    |
 |--------|-------------------------------------------------------|--------------------------------------------------------------|
