@@ -1,5 +1,6 @@
 package com.desafioattus.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -26,4 +27,9 @@ public class Endereco {
 
     @Column(name = "numero" )
     private int numero;
+
+    @ManyToOne
+    @JoinColumn(name = "pessoa_id")
+    @JsonBackReference
+    private Pessoa pessoa;
 }

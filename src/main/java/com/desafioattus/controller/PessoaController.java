@@ -1,6 +1,7 @@
 package com.desafioattus.controller;
 
 import com.desafioattus.model.Pessoa;
+import com.desafioattus.repository.EnderecoRepository;
 import com.desafioattus.repository.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +18,9 @@ public class PessoaController {
 
     @Autowired
     private PessoaRepository pessoaRepository;
+
+    @Autowired
+    EnderecoRepository enderecoRepository;
 
     @GetMapping("/buscaTodasPessoas")
     public ResponseEntity<List<Pessoa>> TodasPessoas(){
@@ -67,4 +71,4 @@ public class PessoaController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    }
+}
