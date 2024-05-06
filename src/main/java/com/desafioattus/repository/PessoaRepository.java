@@ -15,3 +15,4 @@ public interface PessoaRepository extends JpaRepository<Pessoa, UUID> {
 
     List<Pessoa> findByNome(String nome);
 }
+

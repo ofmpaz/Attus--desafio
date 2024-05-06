@@ -19,6 +19,12 @@ public class EnderecoController {
     @Autowired
     EnderecoService enderecoService;
 
+    @PostMapping("/cadastrar")
+    public ResponseEntity<EnderecoDTO> cadastrarEndereco(@RequestBody EnderecoDTO enderecoDTO) {
+        EnderecoDTO novoEndereco = enderecoService.cadastrarEndereco(enderecoDTO);
+        return new ResponseEntity<>(novoEndereco, HttpStatus.CREATED);
+    }
+
     @PostMapping("/associar")
     public ResponseEntity<EnderecoDTO> cadastrarEnderecoAssociado(
             @RequestParam("pessoaId") UUID pessoaId,

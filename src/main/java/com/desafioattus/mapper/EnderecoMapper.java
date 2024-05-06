@@ -4,6 +4,8 @@ import com.desafioattus.model.Endereco;
 import com.desafioattus.model.dto.EnderecoDTO;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel =  "spring")
 public interface EnderecoMapper {
 
@@ -11,5 +13,5 @@ public interface EnderecoMapper {
 
     EnderecoDTO paraEnderecoDTO (Endereco endereco);
 
-
+    List<EnderecoDTO> paraEnderecoDTOs(List<Endereco> enderecos);
 }

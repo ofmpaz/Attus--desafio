@@ -27,12 +27,18 @@ public class EnderecoService {
     @Autowired
     PessoaRepository pessoaRepository;
 
+    public EnderecoDTO cadastrarEndereco(EnderecoDTO enderecoDTO) {
+        Endereco endereco = enderecoMapper.paraEndereco(enderecoDTO);
+        Endereco novoEndereco = enderecoRepository.save(endereco);
+        return enderecoMapper.paraEnderecoDTO(novoEndereco);
+    }
+
     public EnderecoDTO cadastrarEnderecoAssociado(UUID pessoaId, EnderecoDTO enderecoDTO) {
         Pessoa pessoa = pessoaRepository.findById(pessoaId)
                 .orElseThrow(() -> new RuntimeException("Pessoa com ID " + pessoaId + " não encontrada"));
 
         Endereco endereco = enderecoMapper.paraEndereco(enderecoDTO);
-        endereco.setPessoa(pessoa); // Associa o endereço à pessoa
+        endereco.setPessoa(pessoa);
 
         Endereco novoEndereco = enderecoRepository.save(endereco);
 

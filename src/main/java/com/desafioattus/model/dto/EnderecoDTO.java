@@ -33,4 +33,5 @@ public class EnderecoDTO {
     @NotBlank(message = "Estado é obrigatório")
     private String estado;
 
+
 }
